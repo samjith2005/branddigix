@@ -1,0 +1,24 @@
+{
+  "name": "branddigix-platform",
+  "version": "1.0.0",
+  "description": "BRANDDIGIX — Full-Stack Business & Portfolio Platform with Dynamic Admin Panel & SQLite",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "node backend/server.js",
+    "client": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "dev": "node backend/server.js"
+  },
+  "keywords": [
+    "branddigix",
+    "portfolio",
+    "admin-panel",
+    "fullstack",
+    "react",
+    "express",
+    "sqlite"
+  ],
+  "author": "BRANDDIGIX Team",
+  "license": "ISC"
+}
