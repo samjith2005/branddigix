@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: branddigix
+    runtime: node
+    buildCommand: npm install --prefix backend && npm run build
+    startCommand: node backend/server.js
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
