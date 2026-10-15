@@ -2,10 +2,12 @@ services:
   - type: web
     name: branddigix
     runtime: node
-    buildCommand: npm install --prefix backend && npm run build
+    buildCommand: npm install --prefix backend
     startCommand: node backend/server.js
     plan: free
     envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
       - key: NODE_ENV
         value: production
       - key: PORT

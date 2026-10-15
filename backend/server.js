@@ -74,10 +74,10 @@ app.use((err, req, res, next) => {
 const startServer = async () => {
   try {
     await initDb();
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`===============================================`);
       console.log(`🚀 BRANDDIGIX API Server is running on port ${PORT}`);
-      console.log(`🌐 Public API URL: http://localhost:${PORT}/api`);
+      console.log(`🌐 Public API URL: http://0.0.0.0:${PORT}/api`);
       console.log(`🔐 Admin Login: admin@branddigix.com / Admin@123`);
       console.log(`===============================================`);
     });

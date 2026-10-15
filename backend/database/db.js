@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const fs = require('fs');
 
 const dbPath = path.resolve(__dirname, 'branddigix.db');
+fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 
 let db;
 try {
