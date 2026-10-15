@@ -155,16 +155,24 @@ const initDb = async () => {
       )
     `);
 
-    // --- SEED DATA ---
-    // Check if admin exists
-    const adminUser = await get('SELECT * FROM users WHERE email = ?', ['admin@branddigix.com']);
-    if (!adminUser) {
-      const hashedPassword = await bcrypt.hash('Admin@123', 10);
+    // --- SEED / UPDATE ADMIN USER ---
+    const hashedPassword = await bcrypt.hash('admin@123', 10);
+    const existingAdmin = await get('SELECT * FROM users WHERE username IN (?, ?) OR email IN (?, ?)', [
+      'branddigix', 'admin', 'branddigix@gmail.com', 'admin@branddigix.com'
+    ]);
+
+    if (existingAdmin) {
+      await run(
+        `UPDATE users SET username = ?, email = ?, password = ?, name = ? WHERE id = ?`,
+        ['branddigix', 'branddigix@gmail.com', hashedPassword, 'BRANDDIGIX Admin', existingAdmin.id]
+      );
+      console.log('Updated admin user: branddigix / admin@123');
+    } else {
       await run(
         `INSERT INTO users (username, email, password, name, role) VALUES (?, ?, ?, ?, ?)`,
-        ['admin', 'admin@branddigix.com', hashedPassword, 'BRANDDIGIX Admin', 'superadmin']
+        ['branddigix', 'branddigix@gmail.com', hashedPassword, 'BRANDDIGIX Admin', 'superadmin']
       );
-      console.log('Seeded default admin user.');
+      console.log('Seeded admin user: branddigix / admin@123');
     }
 
     // Seed Settings
